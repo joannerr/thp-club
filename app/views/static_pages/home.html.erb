@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HOME</title>
+</head>
+<body>
+	<header>
+		<nav class="nav nav-pills nav-fill">
+			<a class="nav-item nav-link active" href="/">Accueil</a>
+			<% if logged_in? %>
+				<%= link_to "LOG OUT", "/logout", method: :delete, class: 'nav-link nav-item' %>
+			<% else %>
+				<a class="nav-item nav-link" href="/new">Inscription</a>
+				<%= link_to "Se connecter", "/login", class: 'nav-link nav-item' %>
+			<% end %>
+		</nav>
+	</header>
+	
+	<div class="jumbotron">
+		<p>Bienvenue à toi :)</p>
+
+		<h1>Affichage selon</h1>
+
+		<% if logged_in? %>
+			<h2>Si Login :</h2>
+			<a href="/page-club" class="btn btn-lg btn-primary">Lien page du Club</a>
+		<% else %>
+			<br><br>
+			<h2>Si PAS LOGIN:</h2>
+			<a href="/new" class="btn btn-lg btn-primary">Lien pour s'inscrire</a>
+			<a href="/login" class="btn btn-lg btn-primary">Lien pour se connecter</a>
+		<% end %>
+	</div>
+
+	
+
+
+</body>
+</html>
