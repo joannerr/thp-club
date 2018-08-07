@@ -1,22 +1,23 @@
 class SessionsController < ApplicationController
-  def login
-  end
+  
+  def new
+  end 
 
   def create
   	@email = params[:session][:email]
-  	mon_user = User.find_by(email: @email.downcase)
+  	@user = User.find_by(email: @email.downcase)
 
-  	if mon_user && params[:session][:secret_pass] == "test"
-  		log_in(mon_user)
+  	if @user && params[:session][:password]
+  		log_in @user
   		redirect_to root_path
   	else
-  		flash.now[:danger] = 'Invalid email/password combination'
-      render '/'
+  		flash.now[:danger] = "Indentifiants incorrects. Veuillez réessayer."
+      render 'new'
   	end
   end
 
   def destroy
-  	log_out
+  	log_out 
   	redirect_to root_path
   end
 

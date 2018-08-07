@@ -10,7 +10,7 @@
 			<% if logged_in? %>
 				<%= link_to "LOG OUT", "/logout", method: :delete, class: 'nav-link nav-item' %>
 			<% else %>
-				<a class="nav-item nav-link" href="/new">Inscription</a>
+				<a class="nav-item nav-link" href="/signup">Inscription</a>
 				<%= link_to "Se connecter", "/login", class: 'nav-link nav-item' %>
 			<% end %>
 		</nav>
@@ -27,7 +27,7 @@
 		<% else %>
 			<br><br>
 			<h2>Si PAS LOGIN:</h2>
-			<a href="/new" class="btn btn-lg btn-primary">Lien pour s'inscrire</a>
+			<a href="/signup" class="btn btn-lg btn-primary">Lien pour s'inscrire</a>
 			<a href="/login" class="btn btn-lg btn-primary">Lien pour se connecter</a>
 		<% end %>
 	</div>

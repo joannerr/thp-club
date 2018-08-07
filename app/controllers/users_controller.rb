@@ -3,14 +3,19 @@ class UsersController < ApplicationController
   end
 
   def create
-  	puts "-"*50
-  	mon_user = User.new(first_name: params[:first_name], last_name: params[:last_name], email: params[:email])
-  	if mon_user.save
-  		puts "Mon user à été enregistré"
-  		log_in(mon_user)
-  		redirect_to root_path
+  	@user = User.new(
+      first_name: params[:first_name], 
+      last_name: params[:last_name], 
+      email: params[:email], 
+      password: params[:password], 
+      password_confirmation: params[:password_confirmation]
+      )
+  	if @user.save
+  		log_in @user
+  		redirect_to root_path, flash: { success: "Bienvenue au club !" }
   	else
-  		puts "Mon user a un souci :("
+      flash.now[:danger] = "Des informations sont erronées. Veuillez réessayer."
+      render 'new'
   	end
   end
 
